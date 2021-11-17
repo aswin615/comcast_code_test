@@ -29,10 +29,32 @@ def stringinate():
         seen_strings[input] += 1
     else:
         seen_strings[input] = 1
+    ASCII_SIZE = 256
 
+    def getMaxOccuringChar(input):
+        # Create array to keep the count of individual characters
+        # Initialize the count array to zero
+        count = [0] * ASCII_SIZE
+
+        # Utility variables
+        max = -1
+        c = ''
+
+        # Traversing through the string and maintaining the count of
+        # each character
+        for i in input:
+            count[ord(i)]+=1
+
+        for i in input:
+            if max < count[ord(i)]:
+                max = count[ord(i)]
+                c = i
+
+        return c
     return {
         "input": input,
         "length": len(input),
+        "Char": getMaxOccuringChar(input),
     }
 
 @app.route('/stats')
